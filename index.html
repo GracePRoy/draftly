@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#080d19" />
+    <title>Draftly — Your writing copilot</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="shell">
+      <header class="topbar">
+        <a class="brand" href="#"><span class="brand-mark">d</span><span>draftly</span></a>
+        <div class="top-actions">
+          <span class="status" id="connectionStatus" title="Uses the secure local AI service"><i></i> AI service ready</span>
+          <button class="avatar" aria-label="Profile">AK</button>
+        </div>
+      </header>
+
+      <section class="hero">
+        <p class="eyebrow"><span></span> AI WRITING STUDIO</p>
+        <h1>Thoughtful words,<br /><em>beautifully composed.</em></h1>
+        <p class="subtitle">Turn a rough thought into a clear, confident message. Draftly writes, reviews, and refines — in your voice.</p>
+      </section>
+
+      <section class="workspace">
+        <div class="composer panel">
+          <div class="panel-heading"><div><span class="step">01</span><h2>What would you like to say?</h2></div><span class="char-count" id="charCount">0 / 1200</span></div>
+          <textarea id="prompt" maxlength="1200" placeholder="For example: Tell my professor I'll need two extra days to submit the assignment because I’ve been sick."></textarea>
+          <div class="options">
+            <label class="option-label">MESSAGE TYPE
+              <select id="messageType"><option value="Email">Email</option><option value="Slack message">Slack message</option><option value="Text message">Text message</option></select>
+            </label>
+            <label class="option-label tone-wrap">TONE
+              <div class="tone-pills" id="tonePills">
+                <button class="tone active" data-tone="Warm">Warm</button><button class="tone" data-tone="Professional">Professional</button><button class="tone" data-tone="Casual">Casual</button><button class="tone" data-tone="Apologetic">Apologetic</button>
+              </div>
+            </label>
+          </div>
+          <div class="length-row">
+            <span>Length</span><div class="length-pills" id="lengthPills"><button data-length="Brief">Brief</button><button class="active" data-length="Balanced">Balanced</button><button data-length="Detailed">Detailed</button></div>
+          </div>
+          <button class="generate" id="generateButton"><span class="sparkle">✦</span> Compose with Draftly <span class="arrow">→</span></button>
+        </div>
+
+        <aside class="side-panel">
+          <div class="reflection panel">
+            <div class="reflection-title"><span class="step">02</span><h2>Built to think twice.</h2></div>
+            <p>Every message passes through a quiet second look before it reaches you.</p>
+            <ol class="process"><li><span>✦</span><div><b>Compose</b><small>Shape your intent into words</small></div></li><li><span>◌</span><div><b>Reflect</b><small>Check clarity, tone &amp; completeness</small></div></li><li><span>↗</span><div><b>Refine</b><small>Polish the details that matter</small></div></li></ol>
+          </div>
+          <div class="tip"><span>✦</span><p><b>A small prompt goes a long way.</b> Include who you're writing to and what matters most.</p></div>
+        </aside>
+      </section>
+
+      <section class="output hidden" id="output">
+        <div class="output-header"><div><p class="eyebrow"><span></span> READY TO SEND</p><h2>Your refined draft</h2></div><button class="new-draft" id="newDraft">+ New draft</button></div>
+        <div class="draft-grid">
+          <article class="draft-card panel"><div class="draft-top"><span class="approved">✓ REVIEWED &amp; REFINED</span><button id="copyButton">Copy</button></div><div class="draft-content" id="draftContent"></div><div class="draft-footer"><button class="secondary" id="reviseButton">↻ Revise tone</button><button class="primary" id="useButton">Use this draft <span>→</span></button></div></article>
+          <aside class="review-card panel"><p class="eyebrow"><span></span> SELF-REFLECTION</p><h3>Before it reached you</h3><div class="review-item"><span>✓</span><p><b>Clarity</b><small id="clarity">Your request is clear and direct.</small></p></div><div class="review-item"><span>✓</span><p><b>Tone</b><small id="toneReview">The language feels appropriate and considerate.</small></p></div><div class="review-item"><span>✓</span><p><b>Completeness</b><small id="complete">Includes the key details needed to respond.</small></p></div></aside>
+        </div>
+      </section>
+    </main>
+
+    <div class="toast" id="toast"></div>
+    <script src="app.js"></script>
+  </body>
+</html>
